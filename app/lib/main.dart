@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './model/recipe.dart';
+import './views/screens/recipe_list.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'cockhome',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -35,26 +36,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RecipesNotifier>(
-      builder: (context, recipes, child) {
-        Recipe? recipe = recipes.byId(1);
-
-        if (recipe != null) {
-          return Scaffold(
-            body: Center(
-              child: Text(
-                recipe.name,
-              ),
-            ),
-          );
-        } else {
-          return Scaffold(
-            body: Center(
-              child: Text('...'),
-            ),
-          );
-        }
-      },
-    );
+    return RecipeList();
   }
 }
