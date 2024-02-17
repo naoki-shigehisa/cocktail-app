@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import './model/recipe.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final recipesNotifier = RecipesNotifier();
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<RecipesNotifier>(create: (context) => recipesNotifier),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,12 +35,26 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Hello, world!',
-        ),
-      ),
+    return Consumer<RecipesNotifier>(
+      builder: (context, recipes, child) {
+        Recipe? recipe = recipes.byId(1);
+
+        if (recipe != null) {
+          return Scaffold(
+            body: Center(
+              child: Text(
+                recipe.name,
+              ),
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: Center(
+              child: Text('...'),
+            ),
+          );
+        }
+      },
     );
   }
 }
