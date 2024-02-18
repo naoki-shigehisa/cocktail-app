@@ -14,7 +14,7 @@ class Ingredients extends StatelessWidget {
       children: [
         SectionTitle(title: '材料'),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
           child: ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),

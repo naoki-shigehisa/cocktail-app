@@ -14,7 +14,7 @@ class HowToMake extends StatelessWidget {
       children: [
         SectionTitle(title: '作り方'),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -52,6 +52,38 @@ class HowToMake extends StatelessWidget {
                   style: const TextStyle(fontSize: 16),
                 ),
               ),
+            )).toList(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: recipe.recipeSteps.map((step) => ListTile(
+              leading: Container(
+                width: 25,
+                child: Text(
+                  step.order.toString(),
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              title: Text(
+                step.content,
+                style: const TextStyle(fontSize: 16),
+              ),
+              trailing: step.thumbnailUrl != null ? Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    fit: BoxFit.fitWidth,
+                    image: NetworkImage(
+                      step.thumbnailUrl!,
+                    ),
+                  ),
+                ),
+              ) : null,
             )).toList(),
           ),
         ),
