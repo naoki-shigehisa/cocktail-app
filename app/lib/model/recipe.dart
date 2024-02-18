@@ -37,6 +37,9 @@ class Recipe {
   final String technique;
   final String type;
   final bool isIce;
+  final int alcohol;
+  final String taste;
+  final String color;
 
   Recipe({
     required this.id,
@@ -49,6 +52,9 @@ class Recipe {
     required this.technique,
     required this.type,
     required this.isIce,
+    required this.alcohol,
+    required this.taste,
+    required this.color,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
@@ -79,6 +85,9 @@ class Recipe {
       technique: json['technique']['name'],
       type: json['type']['name'],
       isIce: json['is_ice'],
+      alcohol: json['alcohol'],
+      taste: json['taste']['name'],
+      color: json['color']['name'],
     );
   }
 }

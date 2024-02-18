@@ -4,6 +4,7 @@ import '../../model/recipe.dart';
 import '../widgets/_common/section_title.dart';
 import '../widgets/recipe_detail/ingredients.dart';
 import '../widgets/recipe_detail/how_to_make.dart';
+import '../widgets/recipe_detail/basic_info.dart';
 
 class RecipeDetail extends StatelessWidget {
   const RecipeDetail({Key? key, required this.id}) : super(key: key);
@@ -68,6 +69,7 @@ class RecipeDetail extends StatelessWidget {
                     ),
                     Ingredients(recipe: recipe),
                     HowToMake(recipe: recipe),
+                    BasicInfo(recipe: recipe),
                   ],
                 ),
               ),
