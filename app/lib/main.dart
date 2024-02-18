@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'cockhome',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.light(
+          primary: const Color(0xFFF5B2AC),
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(),

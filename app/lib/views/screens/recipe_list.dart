@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/recipe.dart';
+import './recipe_detail.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -36,13 +37,13 @@ class RecipeList extends StatelessWidget {
                     ),
                     subtitle: Text(recipe!.ingredients.map((e) => e.name).join(' ')),
                     trailing: const Icon(Icons.navigate_next),
-                    // onTap: () => {
-                    //   Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //       builder: (BuildContext context) => PokeDetail(poke: poke!),
-                    //     ),
-                    //   ),
-                    // },
+                    onTap: () => {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => RecipeDetail(id: recipe.id),
+                        ),
+                      ),
+                    },
                   );
                 } else {
                   return const ListTile(title: Text('...'));
