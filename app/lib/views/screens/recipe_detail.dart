@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/recipe.dart';
+import '../widgets/_common/section_title.dart';
 
 class RecipeDetail extends StatelessWidget {
   const RecipeDetail({Key? key, required this.id}) : super(key: key);
@@ -30,7 +31,7 @@ class RecipeDetail extends StatelessWidget {
                   children: [
                     Container(
                       width: double.infinity,
-                      height: 300,
+                      height: 350,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.fitWidth,
@@ -63,28 +64,7 @@ class RecipeDetail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: Container(
-                              height: 35,
-                              width: 4,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            '材料',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
+                    SectionTitle(title: '材料'),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: ListView.builder(
@@ -115,6 +95,7 @@ class RecipeDetail extends StatelessWidget {
                         },
                       ),
                     ),
+                    SectionTitle(title: '作り方'),
                   ],
                 ),
               ),
