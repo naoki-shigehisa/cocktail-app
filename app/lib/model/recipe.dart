@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './ingredient.dart';
+import './recipe_step.dart';
 import '../api/cockhome.dart';
 
 class RecipesNotifier extends ChangeNotifier {
@@ -32,6 +33,10 @@ class Recipe {
   final String description;
   final String thumbnailUrl;
   final List<Ingredient> ingredients;
+  final List<RecipeStep> recipeSteps;
+  final String technique;
+  final String type;
+  final bool isIce;
 
   Recipe({
     required this.id,
@@ -40,6 +45,10 @@ class Recipe {
     required this.description,
     required this.thumbnailUrl,
     required this.ingredients,
+    required this.recipeSteps,
+    required this.technique,
+    required this.type,
+    required this.isIce,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
@@ -51,6 +60,14 @@ class Recipe {
       return ret;
     }
 
+    List<RecipeStep> recipeStepsToList(dynamic recipeSteps) {
+      List<RecipeStep> ret = [];
+      for (int i = 0; i < recipeSteps.length; i++) {
+        ret.add(RecipeStep.fromJson(recipeSteps[i]));
+      }
+      return ret;
+    }
+
     return Recipe(
       id: json['id'],
       name: json['name'],
@@ -58,6 +75,10 @@ class Recipe {
       description: json['description'],
       thumbnailUrl: json['thumbnail_url'],
       ingredients: ingredientsToList(json['recipe_materials']),
+      recipeSteps: recipeStepsToList(json['recipe_steps']),
+      technique: json['technique']['name'],
+      type: json['type']['name'],
+      isIce: json['is_ice'],
     );
   }
 }

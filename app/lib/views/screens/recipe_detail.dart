@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../model/recipe.dart';
 import '../widgets/_common/section_title.dart';
+import '../widgets/recipe_detail/ingredients.dart';
+import '../widgets/recipe_detail/how_to_make.dart';
 
 class RecipeDetail extends StatelessWidget {
   const RecipeDetail({Key? key, required this.id}) : super(key: key);
@@ -64,38 +66,8 @@ class RecipeDetail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SectionTitle(title: '材料'),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: recipe.ingredients.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.grey[350]!,
-                                  width: 2.0,
-                                ),
-                              ),
-                            ),
-                            child: ListTile(
-                              title: Text(
-                                recipe.ingredients[index].name,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              trailing: Text(
-                                '${recipe.ingredients[index].amount}${recipe.ingredients[index].unit}',
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    SectionTitle(title: '作り方'),
+                    Ingredients(recipe: recipe),
+                    HowToMake(recipe: recipe),
                   ],
                 ),
               ),
