@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../model/recipe.dart';
-import './recipe_detail.dart';
+import 'package:cockhome/model/recipe.dart';
+import 'package:cockhome/view/screens/recipe_detail/recipe_detail.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class RecipeList extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: ListView.builder(
+              // ここをid決め打ちじゃなくてサーバーサイドで制御できるようにする & まとめて取得する
               itemCount: 10,
               itemBuilder: (context, index) {
                 Recipe? recipe = recipes.byId(index + 1);

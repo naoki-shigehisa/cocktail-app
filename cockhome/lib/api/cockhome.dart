@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../const/api.dart';
-import '../model/recipe.dart';
+import 'package:cockhome/const/api.dart';
+import 'package:cockhome/model/recipe.dart';
 
 Future<Recipe> fetchRecipeFromApi(int id) async {
   final response = await http.get(Uri.parse('$cockhomeApiRoute/v1/recipes/$id.json'));

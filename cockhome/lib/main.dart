@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './model/recipe.dart';
-import './views/screens/recipe_list.dart';
+import 'package:cockhome/model/recipe.dart';
+import 'package:cockhome/view/screens/recipe_list/recipe_list.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

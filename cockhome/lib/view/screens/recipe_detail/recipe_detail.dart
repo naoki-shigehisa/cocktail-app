@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../model/recipe.dart';
-import '../widgets/_common/section_title.dart';
-import '../widgets/recipe_detail/ingredients.dart';
-import '../widgets/recipe_detail/how_to_make.dart';
-import '../widgets/recipe_detail/basic_info.dart';
+import 'package:cockhome/model/recipe.dart';
+import 'package:cockhome/view/widgets/section_title.dart';
+import 'package:cockhome/view/screens/recipe_detail/widgets/ingredients.dart';
+import 'package:cockhome/view/screens/recipe_detail/widgets/how_to_make.dart';
+import 'package:cockhome/view/screens/recipe_detail/widgets/basic_info.dart';
 
 class RecipeDetail extends StatelessWidget {
   const RecipeDetail({Key? key, required this.id}) : super(key: key);

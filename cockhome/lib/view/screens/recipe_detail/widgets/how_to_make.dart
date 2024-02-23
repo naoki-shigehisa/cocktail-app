@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../model/recipe.dart';
-import '../_common/section_title.dart';
+import 'package:cockhome/model/recipe.dart';
+import 'package:cockhome/view/widgets/section_title.dart';
 
 class HowToMake extends StatelessWidget {
   final Recipe recipe;

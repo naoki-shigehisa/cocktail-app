@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './ingredient.dart';
-import './recipe_step.dart';
-import '../api/cockhome.dart';
+import 'package:cockhome/model/ingredient.dart';
+import 'package:cockhome/model/recipe_step.dart';
+import 'package:cockhome/api/cockhome.dart';
 
 class RecipesNotifier extends ChangeNotifier {
   final Map<int, Recipe?> _recipeMap = {};
