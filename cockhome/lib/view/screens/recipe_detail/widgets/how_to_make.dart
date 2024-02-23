@@ -59,31 +59,40 @@ class HowToMake extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: recipe.recipeSteps.map((step) => ListTile(
-              leading: Container(
-                width: 25,
-                child: Text(
-                  step.order.toString(),
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-              title: Text(
-                step.content,
-                style: const TextStyle(fontSize: 16),
-              ),
-              trailing: step.thumbnailUrl != null ? Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    fit: BoxFit.fitWidth,
-                    image: NetworkImage(
-                      step.thumbnailUrl!,
-                    ),
+            children: recipe.recipeSteps.map((step) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: ListTile(
+                leading: Container(
+                  width: 25,
+                  height: 25,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[600]!,
+                    borderRadius: BorderRadius.circular(3),
+                  ),
+                  child: Text(
+                    step.order.toString(),
+                    style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
-              ) : null,
+                title: Text(
+                  step.content,
+                  style: const TextStyle(fontSize: 16),
+                ),
+                trailing: step.thumbnailUrl != null ? Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      fit: BoxFit.fitWidth,
+                      image: NetworkImage(
+                        step.thumbnailUrl!,
+                      ),
+                    ),
+                  ),
+                ) : null,
+              ),
             )).toList(),
           ),
         ),
