@@ -10,13 +10,14 @@ class RecipeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<RecipesNotifier>(
       builder: (context, recipes, child) {
+        List<Recipe> recipeList = recipes.all();
+
         return Scaffold(
           body: SafeArea(
             child: ListView.builder(
-              // ここをid決め打ちじゃなくてサーバーサイドで制御できるようにする & まとめて取得する
-              itemCount: 10,
+              itemCount: recipeList.length,
               itemBuilder: (context, index) {
-                Recipe? recipe = recipes.byId(index + 1);
+                Recipe? recipe = recipeList[index];
 
                 if (recipe != null) {
                   return ListTile(

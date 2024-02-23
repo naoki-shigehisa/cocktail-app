@@ -20,15 +20,15 @@ class HowToMake extends StatelessWidget {
             children: [
               {
                 'title': '技法',
-                'content': recipe.technique,
+                'content': recipe.technique!,
               },
               {
                 'title': 'グラス',
-                'content': recipe.type,
+                'content': recipe.type!,
               },
               {
                 'title': '氷',
-                'content': recipe.isIce ? "あり" : "なし",
+                'content': recipe.isIce! ? "あり" : "なし",
               },
             ].map((item) => Container(
               decoration: BoxDecoration(

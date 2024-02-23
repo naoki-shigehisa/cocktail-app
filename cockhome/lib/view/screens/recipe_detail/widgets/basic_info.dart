@@ -20,19 +20,19 @@ class BasicInfo extends StatelessWidget {
             children: [
               {
                 'title': 'アルコール',
-                'content': '約${recipe.alcohol}%',
+                'content': '約${recipe.alcohol!}%',
               },
               {
                 'title': '色',
-                'content': recipe.color,
+                'content': recipe.color!,
               },
               {
                 'title': '味',
-                'content': recipe.taste,
+                'content': recipe.taste!,
               },
               {
                 'title': 'タイプ',
-                'content': recipe.type,
+                'content': recipe.type!,
               },
             ].map((item) => Container(
               decoration: BoxDecoration(

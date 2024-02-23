@@ -5,8 +5,10 @@ import 'package:cockhome/api/cockhome.dart';
 
 class RecipesNotifier extends ChangeNotifier {
   final Map<int, Recipe?> _recipeMap = {};
+  final List<Recipe> _recipeList = [];
 
-  Map<int, Recipe?> get recipes => _recipeMap;
+  Map<int, Recipe?> get recipeMaps => _recipeMap;
+  List<Recipe> get recipeList => _recipeList;
 
   void addRecipe(Recipe recipe) {
     _recipeMap[recipe.id] = recipe;
@@ -18,11 +20,24 @@ class RecipesNotifier extends ChangeNotifier {
     addRecipe(await fetchRecipeFromApi(id));
   }
 
+  void fetchRecipes() async {
+    _recipeList.clear();
+    _recipeList.addAll(await fetchRecipesFromApi());
+    notifyListeners();
+  }
+
   Recipe? byId(int id) {
     if (!_recipeMap.containsKey(id)) {
       fetchRecipe(id);
     }
     return _recipeMap[id];
+  }
+
+  List<Recipe> all() {
+    if (_recipeList.isEmpty) {
+      fetchRecipes();
+    }
+    return _recipeList;
   }
 }
 
@@ -34,12 +49,12 @@ class Recipe {
   final String thumbnailUrl;
   final List<Ingredient> ingredients;
   final List<RecipeStep> recipeSteps;
-  final String technique;
-  final String type;
-  final bool isIce;
-  final int alcohol;
-  final String taste;
-  final String color;
+  final String? technique;
+  final String? type;
+  final bool? isIce;
+  final int? alcohol;
+  final String? taste;
+  final String? color;
 
   Recipe({
     required this.id,
@@ -67,6 +82,10 @@ class Recipe {
     }
 
     List<RecipeStep> recipeStepsToList(dynamic recipeSteps) {
+      if (recipeSteps == null) {
+        return [];
+      }
+
       List<RecipeStep> ret = [];
       for (int i = 0; i < recipeSteps.length; i++) {
         ret.add(RecipeStep.fromJson(recipeSteps[i]));
@@ -82,12 +101,12 @@ class Recipe {
       thumbnailUrl: json['thumbnail_url'],
       ingredients: ingredientsToList(json['recipe_materials']),
       recipeSteps: recipeStepsToList(json['recipe_steps']),
-      technique: json['technique']['name'],
-      type: json['type']['name'],
+      technique: json['technique']?['name'] ?? null,
+      type: json['type']?['name'] ?? null,
       isIce: json['is_ice'],
       alcohol: json['alcohol'],
-      taste: json['taste']['name'],
-      color: json['color']['name'],
+      taste: json['taste']?['name'] ?? null,
+      color: json['color']?['name'] ?? null,
     );
   }
 }
