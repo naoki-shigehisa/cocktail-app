@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cockhome/model/recipe.dart';
+import 'package:cockhome/model/search_condition.dart';
 import 'package:cockhome/view/screens/recipe_list/recipe_list.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final recipesNotifier = RecipesNotifier();
+  final searchConditionsNotifier = SearchConditionsNotifier();
 
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<RecipesNotifier>(create: (context) => recipesNotifier),
+      ChangeNotifierProvider<SearchConditionsNotifier>(create: (context) => searchConditionsNotifier),
     ],
     child: const MyApp(),
   ));

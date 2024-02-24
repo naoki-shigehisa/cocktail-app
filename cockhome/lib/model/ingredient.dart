@@ -8,9 +8,9 @@ class Ingredient {
   final String thumbnailUrl;
   final String amazonUrl;
   final bool isAlcohol;
-  final String unit;
-  final int amount;
-  final bool isOption;
+  final String? unit;
+  final int? amount;
+  final bool? isOption;
 
   Ingredient({
     required this.id,

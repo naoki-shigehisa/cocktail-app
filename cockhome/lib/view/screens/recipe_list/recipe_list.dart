@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cockhome/model/recipe.dart';
 import 'package:cockhome/view/screens/recipe_detail/recipe_detail.dart';
+import 'package:cockhome/view/screens/recipe_list/widgets/search_bottom_sheet.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -52,6 +53,23 @@ class RecipeList extends StatelessWidget {
                 }
               },
             ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              await showModalBottomSheet<bool>(
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  )
+                ),
+                builder: (BuildContext context) {
+                  return SearchBottomSheet();
+                },
+              );
+            },
+            child: const Icon(Icons.search),
           ),
         );
       },
