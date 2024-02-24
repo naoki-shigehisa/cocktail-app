@@ -27,6 +27,20 @@ Future<List<Recipe>> fetchRecipesFromApi() async {
   }
 }
 
+Future<List<Recipe>> searchRecipesFromApi(List<int> material_ids) async {
+  final response = await http.get(Uri.parse('$cockhomeApiRoute/v1/search/recipes.json?material_ids[]=${material_ids.join('&material_ids[]=')}'));
+  if (response.statusCode == 200) {
+    final List<dynamic> recipes = jsonDecode(response.body)['recipes'];
+    List<Recipe> ret = [];
+    for (int i = 0; i < recipes.length; i++) {
+      ret.add(Recipe.fromJson(recipes[i]));
+    }
+    return ret;
+  } else {
+    throw Exception('Failed to load recipes');
+  }
+}
+
 Future<List<Ingredient>> fetchIngredientsFromApi() async {
   final response = await http.get(Uri.parse('$cockhomeApiRoute/v1/materials.json'));
   if (response.statusCode == 200) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cockhome/model/recipe.dart';
+import 'package:cockhome/model/search_condition.dart';
 import 'package:cockhome/view/screens/recipe_detail/recipe_detail.dart';
 import 'package:cockhome/view/screens/recipe_list/widgets/search_bottom_sheet.dart';
 
@@ -67,7 +68,10 @@ class RecipeList extends StatelessWidget {
                 builder: (BuildContext context) {
                   return SearchBottomSheet();
                 },
-              );
+              ).then((_) {
+                final selectedIngredientIds = Provider.of<SearchConditionsNotifier>(context, listen: false).selectedIngredientIds;
+                recipes.searchRecipes(selectedIngredientIds);
+              });
             },
             child: const Icon(Icons.search),
           ),

@@ -26,6 +26,12 @@ class RecipesNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  void searchRecipes(List<int> ingredientIds) async {
+    _recipeList.clear();
+    _recipeList.addAll(await searchRecipesFromApi(ingredientIds));
+    notifyListeners();
+  }
+
   Recipe? byId(int id) {
     if (!_recipeMap.containsKey(id)) {
       fetchRecipe(id);

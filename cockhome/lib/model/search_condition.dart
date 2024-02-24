@@ -29,6 +29,11 @@ class SearchConditionsNotifier extends ChangeNotifier {
     }
   }
 
+  void clearSelectedIngredients() {
+    _selectedIngredientIds.clear();
+    notifyListeners();
+  }
+
   List<Ingredient> allIngredients() {
     if (_ingredients.isEmpty) {
       _fetchIngredients();
